@@ -3,55 +3,55 @@ Simple_alarm10.elf:     file format elf32-avr
 
 Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
-  0 .text         0000027a  00000000  00000000  00000094  2**1
+  0 .text         0000025c  00000000  00000000  00000074  2**1
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  1 .data         00000008  00800060  0000027a  0000030e  2**0
+  1 .data         00000000  00800060  00800060  000002d0  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  2 .bss          00000016  00800068  00800068  00000316  2**0
+  2 .bss          00000016  00800060  00800060  000002d0  2**0
                   ALLOC
-  3 .comment      00000030  00000000  00000000  00000316  2**0
+  3 .comment      00000030  00000000  00000000  000002d0  2**0
                   CONTENTS, READONLY
-  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000348  2**2
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  00000300  2**2
                   CONTENTS, READONLY
-  5 .debug_aranges 00000048  00000000  00000000  00000384  2**0
+  5 .debug_aranges 00000048  00000000  00000000  0000033c  2**0
                   CONTENTS, READONLY, DEBUGGING
-  6 .debug_info   0000047b  00000000  00000000  000003cc  2**0
+  6 .debug_info   00000469  00000000  00000000  00000384  2**0
                   CONTENTS, READONLY, DEBUGGING
-  7 .debug_abbrev 00000251  00000000  00000000  00000847  2**0
+  7 .debug_abbrev 0000025e  00000000  00000000  000007ed  2**0
                   CONTENTS, READONLY, DEBUGGING
-  8 .debug_line   00000266  00000000  00000000  00000a98  2**0
+  8 .debug_line   00000338  00000000  00000000  00000a4b  2**0
                   CONTENTS, READONLY, DEBUGGING
-  9 .debug_frame  000000d0  00000000  00000000  00000d00  2**2
+  9 .debug_frame  000000d0  00000000  00000000  00000d84  2**2
                   CONTENTS, READONLY, DEBUGGING
- 10 .debug_str    0000026b  00000000  00000000  00000dd0  2**0
+ 10 .debug_str    0000026b  00000000  00000000  00000e54  2**0
                   CONTENTS, READONLY, DEBUGGING
- 11 .debug_loc    00000284  00000000  00000000  0000103b  2**0
+ 11 .debug_loc    00000284  00000000  00000000  000010bf  2**0
                   CONTENTS, READONLY, DEBUGGING
- 12 .debug_ranges 00000038  00000000  00000000  000012bf  2**0
+ 12 .debug_ranges 00000038  00000000  00000000  00001343  2**0
                   CONTENTS, READONLY, DEBUGGING
 
 Disassembly of section .text:
 
 00000000 <__vectors>:
    0:	12 c0       	rjmp	.+36     	; 0x26 <__ctors_end>
-   2:	2c c0       	rjmp	.+88     	; 0x5c <__bad_interrupt>
-   4:	2b c0       	rjmp	.+86     	; 0x5c <__bad_interrupt>
-   6:	2a c0       	rjmp	.+84     	; 0x5c <__bad_interrupt>
-   8:	29 c0       	rjmp	.+82     	; 0x5c <__bad_interrupt>
-   a:	28 c0       	rjmp	.+80     	; 0x5c <__bad_interrupt>
-   c:	27 c0       	rjmp	.+78     	; 0x5c <__bad_interrupt>
-   e:	26 c0       	rjmp	.+76     	; 0x5c <__bad_interrupt>
-  10:	25 c0       	rjmp	.+74     	; 0x5c <__bad_interrupt>
-  12:	31 c0       	rjmp	.+98     	; 0x76 <__vector_9>
-  14:	23 c0       	rjmp	.+70     	; 0x5c <__bad_interrupt>
-  16:	22 c0       	rjmp	.+68     	; 0x5c <__bad_interrupt>
-  18:	21 c0       	rjmp	.+66     	; 0x5c <__bad_interrupt>
-  1a:	20 c0       	rjmp	.+64     	; 0x5c <__bad_interrupt>
-  1c:	1f c0       	rjmp	.+62     	; 0x5c <__bad_interrupt>
-  1e:	1e c0       	rjmp	.+60     	; 0x5c <__bad_interrupt>
-  20:	1d c0       	rjmp	.+58     	; 0x5c <__bad_interrupt>
-  22:	1c c0       	rjmp	.+56     	; 0x5c <__bad_interrupt>
-  24:	1b c0       	rjmp	.+54     	; 0x5c <__bad_interrupt>
+   2:	21 c0       	rjmp	.+66     	; 0x46 <__bad_interrupt>
+   4:	20 c0       	rjmp	.+64     	; 0x46 <__bad_interrupt>
+   6:	1f c0       	rjmp	.+62     	; 0x46 <__bad_interrupt>
+   8:	1e c0       	rjmp	.+60     	; 0x46 <__bad_interrupt>
+   a:	1d c0       	rjmp	.+58     	; 0x46 <__bad_interrupt>
+   c:	1c c0       	rjmp	.+56     	; 0x46 <__bad_interrupt>
+   e:	1b c0       	rjmp	.+54     	; 0x46 <__bad_interrupt>
+  10:	1a c0       	rjmp	.+52     	; 0x46 <__bad_interrupt>
+  12:	26 c0       	rjmp	.+76     	; 0x60 <__vector_9>
+  14:	18 c0       	rjmp	.+48     	; 0x46 <__bad_interrupt>
+  16:	17 c0       	rjmp	.+46     	; 0x46 <__bad_interrupt>
+  18:	16 c0       	rjmp	.+44     	; 0x46 <__bad_interrupt>
+  1a:	15 c0       	rjmp	.+42     	; 0x46 <__bad_interrupt>
+  1c:	14 c0       	rjmp	.+40     	; 0x46 <__bad_interrupt>
+  1e:	13 c0       	rjmp	.+38     	; 0x46 <__bad_interrupt>
+  20:	12 c0       	rjmp	.+36     	; 0x46 <__bad_interrupt>
+  22:	11 c0       	rjmp	.+34     	; 0x46 <__bad_interrupt>
+  24:	10 c0       	rjmp	.+32     	; 0x46 <__bad_interrupt>
 
 00000026 <__ctors_end>:
   26:	11 24       	eor	r1, r1
@@ -61,435 +61,417 @@ Disassembly of section .text:
   2e:	de bf       	out	0x3e, r29	; 62
   30:	cd bf       	out	0x3d, r28	; 61
 
-00000032 <__do_copy_data>:
-  32:	10 e0       	ldi	r17, 0x00	; 0
+00000032 <__do_clear_bss>:
+  32:	20 e0       	ldi	r18, 0x00	; 0
   34:	a0 e6       	ldi	r26, 0x60	; 96
   36:	b0 e0       	ldi	r27, 0x00	; 0
-  38:	ea e7       	ldi	r30, 0x7A	; 122
-  3a:	f2 e0       	ldi	r31, 0x02	; 2
-  3c:	02 c0       	rjmp	.+4      	; 0x42 <__SREG__+0x3>
-  3e:	05 90       	lpm	r0, Z+
-  40:	0d 92       	st	X+, r0
-  42:	a8 36       	cpi	r26, 0x68	; 104
-  44:	b1 07       	cpc	r27, r17
-  46:	d9 f7       	brne	.-10     	; 0x3e <__SP_H__>
+  38:	01 c0       	rjmp	.+2      	; 0x3c <.do_clear_bss_start>
 
-00000048 <__do_clear_bss>:
-  48:	20 e0       	ldi	r18, 0x00	; 0
-  4a:	a8 e6       	ldi	r26, 0x68	; 104
-  4c:	b0 e0       	ldi	r27, 0x00	; 0
-  4e:	01 c0       	rjmp	.+2      	; 0x52 <.do_clear_bss_start>
+0000003a <.do_clear_bss_loop>:
+  3a:	1d 92       	st	X+, r1
 
-00000050 <.do_clear_bss_loop>:
-  50:	1d 92       	st	X+, r1
+0000003c <.do_clear_bss_start>:
+  3c:	a6 37       	cpi	r26, 0x76	; 118
+  3e:	b2 07       	cpc	r27, r18
+  40:	e1 f7       	brne	.-8      	; 0x3a <.do_clear_bss_loop>
+  42:	d9 d0       	rcall	.+434    	; 0x1f6 <main>
+  44:	09 c1       	rjmp	.+530    	; 0x258 <_exit>
 
-00000052 <.do_clear_bss_start>:
-  52:	ae 37       	cpi	r26, 0x7E	; 126
-  54:	b2 07       	cpc	r27, r18
-  56:	e1 f7       	brne	.-8      	; 0x50 <.do_clear_bss_loop>
-  58:	d9 d0       	rcall	.+434    	; 0x20c <main>
-  5a:	0d c1       	rjmp	.+538    	; 0x276 <_exit>
+00000046 <__bad_interrupt>:
+  46:	dc cf       	rjmp	.-72     	; 0x0 <__vectors>
 
-0000005c <__bad_interrupt>:
-  5c:	d1 cf       	rjmp	.-94     	; 0x0 <__vectors>
-
-0000005e <st_millis>:
+00000048 <st_millis>:
 //Фукция выдачи текущего системного времени
 uint32_t st_millis(void)
 {
 	uint32_t m;
 
 	ATOMIC_BLOCK(ATOMIC_RESTORESTATE)
-  5e:	2f b7       	in	r18, 0x3f	; 63
+  48:	2f b7       	in	r18, 0x3f	; 63
     return 1;
 }
 
 static __inline__ uint8_t __iCliRetVal(void)
 {
     cli();
-  60:	f8 94       	cli
+  4a:	f8 94       	cli
 	{
 		m = st_timer0_millis;
-  62:	60 91 74 00 	lds	r22, 0x0074
-  66:	70 91 75 00 	lds	r23, 0x0075
-  6a:	80 91 76 00 	lds	r24, 0x0076
-  6e:	90 91 77 00 	lds	r25, 0x0077
+  4c:	60 91 6c 00 	lds	r22, 0x006C	; 0x80006c <st_timer0_millis>
+  50:	70 91 6d 00 	lds	r23, 0x006D	; 0x80006d <st_timer0_millis+0x1>
+  54:	80 91 6e 00 	lds	r24, 0x006E	; 0x80006e <st_timer0_millis+0x2>
+  58:	90 91 6f 00 	lds	r25, 0x006F	; 0x80006f <st_timer0_millis+0x3>
     (void)__s;
 }
 
 static __inline__ void __iRestore(const  uint8_t *__s)
 {
     SREG = *__s;
-  72:	2f bf       	out	0x3f, r18	; 63
+  5c:	2f bf       	out	0x3f, r18	; 63
 	}
 
 	return m;
 }
-  74:	08 95       	ret
+  5e:	08 95       	ret
 
-00000076 <__vector_9>:
+00000060 <__vector_9>:
 
 
 /*Обработчики прерываний*/
 //Обработка прерывания по совпадению от таймера0, увеличивает системный таймер
 ISR(TIMER0_OVF_vect)
 {
-  76:	1f 92       	push	r1
-  78:	0f 92       	push	r0
-  7a:	0f b6       	in	r0, 0x3f	; 63
-  7c:	0f 92       	push	r0
-  7e:	11 24       	eor	r1, r1
-  80:	8f 93       	push	r24
-  82:	9f 93       	push	r25
-  84:	af 93       	push	r26
-  86:	bf 93       	push	r27
+  60:	1f 92       	push	r1
+  62:	0f 92       	push	r0
+  64:	0f b6       	in	r0, 0x3f	; 63
+  66:	0f 92       	push	r0
+  68:	11 24       	eor	r1, r1
+  6a:	8f 93       	push	r24
+  6c:	9f 93       	push	r25
+  6e:	af 93       	push	r26
+  70:	bf 93       	push	r27
 	st_timer0_millis++;
-  88:	80 91 74 00 	lds	r24, 0x0074
-  8c:	90 91 75 00 	lds	r25, 0x0075
-  90:	a0 91 76 00 	lds	r26, 0x0076
-  94:	b0 91 77 00 	lds	r27, 0x0077
-  98:	01 96       	adiw	r24, 0x01	; 1
-  9a:	a1 1d       	adc	r26, r1
-  9c:	b1 1d       	adc	r27, r1
-  9e:	80 93 74 00 	sts	0x0074, r24
-  a2:	90 93 75 00 	sts	0x0075, r25
-  a6:	a0 93 76 00 	sts	0x0076, r26
-  aa:	b0 93 77 00 	sts	0x0077, r27
+  72:	80 91 6c 00 	lds	r24, 0x006C	; 0x80006c <st_timer0_millis>
+  76:	90 91 6d 00 	lds	r25, 0x006D	; 0x80006d <st_timer0_millis+0x1>
+  7a:	a0 91 6e 00 	lds	r26, 0x006E	; 0x80006e <st_timer0_millis+0x2>
+  7e:	b0 91 6f 00 	lds	r27, 0x006F	; 0x80006f <st_timer0_millis+0x3>
+  82:	01 96       	adiw	r24, 0x01	; 1
+  84:	a1 1d       	adc	r26, r1
+  86:	b1 1d       	adc	r27, r1
+  88:	80 93 6c 00 	sts	0x006C, r24	; 0x80006c <st_timer0_millis>
+  8c:	90 93 6d 00 	sts	0x006D, r25	; 0x80006d <st_timer0_millis+0x1>
+  90:	a0 93 6e 00 	sts	0x006E, r26	; 0x80006e <st_timer0_millis+0x2>
+  94:	b0 93 6f 00 	sts	0x006F, r27	; 0x80006f <st_timer0_millis+0x3>
 }
-  ae:	bf 91       	pop	r27
-  b0:	af 91       	pop	r26
-  b2:	9f 91       	pop	r25
-  b4:	8f 91       	pop	r24
-  b6:	0f 90       	pop	r0
-  b8:	0f be       	out	0x3f, r0	; 63
-  ba:	0f 90       	pop	r0
-  bc:	1f 90       	pop	r1
-  be:	18 95       	reti
+  98:	bf 91       	pop	r27
+  9a:	af 91       	pop	r26
+  9c:	9f 91       	pop	r25
+  9e:	8f 91       	pop	r24
+  a0:	0f 90       	pop	r0
+  a2:	0f be       	out	0x3f, r0	; 63
+  a4:	0f 90       	pop	r0
+  a6:	1f 90       	pop	r1
+  a8:	18 95       	reti
 
-000000c0 <Buttons>:
+000000aa <Buttons>:
 
 /* Протопотоки */
 
 //Протопоток 1 - обработка нажатия кнопок, настройка режима генератора
 PT_THREAD(Buttons(struct pt *pt))
 {
-  c0:	0f 93       	push	r16
-  c2:	1f 93       	push	r17
-  c4:	cf 93       	push	r28
-  c6:	df 93       	push	r29
-  c8:	ec 01       	movw	r28, r24
+  aa:	0f 93       	push	r16
+  ac:	1f 93       	push	r17
+  ae:	cf 93       	push	r28
+  b0:	df 93       	push	r29
+  b2:	ec 01       	movw	r28, r24
 	static uint32_t but_timer=0;
 	static volatile uint8_t delay=0; //200мсек задержка между нажатиями
 	PT_BEGIN(pt);
-  ca:	88 81       	ld	r24, Y
-  cc:	99 81       	ldd	r25, Y+1	; 0x01
-  ce:	00 97       	sbiw	r24, 0x00	; 0
-  d0:	21 f0       	breq	.+8      	; 0xda <Buttons+0x1a>
-  d2:	8f 3d       	cpi	r24, 0xDF	; 223
-  d4:	91 05       	cpc	r25, r1
-  d6:	29 f0       	breq	.+10     	; 0xe2 <Buttons+0x22>
-  d8:	20 c0       	rjmp	.+64     	; 0x11a <Buttons+0x5a>
+  b4:	88 81       	ld	r24, Y
+  b6:	99 81       	ldd	r25, Y+1	; 0x01
+  b8:	00 97       	sbiw	r24, 0x00	; 0
+  ba:	21 f0       	breq	.+8      	; 0xc4 <Buttons+0x1a>
+  bc:	8e 3d       	cpi	r24, 0xDE	; 222
+  be:	91 05       	cpc	r25, r1
+  c0:	29 f0       	breq	.+10     	; 0xcc <Buttons+0x22>
+  c2:	20 c0       	rjmp	.+64     	; 0x104 <Buttons+0x5a>
 	PT_WAIT_UNTIL(pt, (st_millis()-but_timer)>=10);
-  da:	8f ed       	ldi	r24, 0xDF	; 223
-  dc:	90 e0       	ldi	r25, 0x00	; 0
-  de:	99 83       	std	Y+1, r25	; 0x01
-  e0:	88 83       	st	Y, r24
-  e2:	bd df       	rcall	.-134    	; 0x5e <st_millis>
-  e4:	00 91 70 00 	lds	r16, 0x0070
-  e8:	10 91 71 00 	lds	r17, 0x0071
-  ec:	20 91 72 00 	lds	r18, 0x0072
-  f0:	30 91 73 00 	lds	r19, 0x0073
-  f4:	dc 01       	movw	r26, r24
-  f6:	cb 01       	movw	r24, r22
-  f8:	80 1b       	sub	r24, r16
-  fa:	91 0b       	sbc	r25, r17
-  fc:	a2 0b       	sbc	r26, r18
-  fe:	b3 0b       	sbc	r27, r19
- 100:	0a 97       	sbiw	r24, 0x0a	; 10
- 102:	a1 05       	cpc	r26, r1
- 104:	b1 05       	cpc	r27, r1
- 106:	68 f0       	brcs	.+26     	; 0x122 <Buttons+0x62>
+  c4:	8e ed       	ldi	r24, 0xDE	; 222
+  c6:	90 e0       	ldi	r25, 0x00	; 0
+  c8:	99 83       	std	Y+1, r25	; 0x01
+  ca:	88 83       	st	Y, r24
+  cc:	bd df       	rcall	.-134    	; 0x48 <st_millis>
+  ce:	00 91 68 00 	lds	r16, 0x0068	; 0x800068 <but_timer.1666>
+  d2:	10 91 69 00 	lds	r17, 0x0069	; 0x800069 <but_timer.1666+0x1>
+  d6:	20 91 6a 00 	lds	r18, 0x006A	; 0x80006a <but_timer.1666+0x2>
+  da:	30 91 6b 00 	lds	r19, 0x006B	; 0x80006b <but_timer.1666+0x3>
+  de:	dc 01       	movw	r26, r24
+  e0:	cb 01       	movw	r24, r22
+  e2:	80 1b       	sub	r24, r16
+  e4:	91 0b       	sbc	r25, r17
+  e6:	a2 0b       	sbc	r26, r18
+  e8:	b3 0b       	sbc	r27, r19
+  ea:	0a 97       	sbiw	r24, 0x0a	; 10
+  ec:	a1 05       	cpc	r26, r1
+  ee:	b1 05       	cpc	r27, r1
+  f0:	68 f0       	brcs	.+26     	; 0x10c <Buttons+0x62>
 	but_timer=st_millis();
- 108:	aa df       	rcall	.-172    	; 0x5e <st_millis>
- 10a:	60 93 70 00 	sts	0x0070, r22
- 10e:	70 93 71 00 	sts	0x0071, r23
- 112:	80 93 72 00 	sts	0x0072, r24
- 116:	90 93 73 00 	sts	0x0073, r25
+  f2:	aa df       	rcall	.-172    	; 0x48 <st_millis>
+  f4:	60 93 68 00 	sts	0x0068, r22	; 0x800068 <but_timer.1666>
+  f8:	70 93 69 00 	sts	0x0069, r23	; 0x800069 <but_timer.1666+0x1>
+  fc:	80 93 6a 00 	sts	0x006A, r24	; 0x80006a <but_timer.1666+0x2>
+ 100:	90 93 6b 00 	sts	0x006B, r25	; 0x80006b <but_timer.1666+0x3>
 			DISCONECT_TIMER_FROM_PIN;
 			OUT_OFF;
 			delay=BUTTON_DELAY_200MSEC;
 		}
 	}*/
 	PT_END(pt);
- 11a:	19 82       	std	Y+1, r1	; 0x01
- 11c:	18 82       	st	Y, r1
- 11e:	83 e0       	ldi	r24, 0x03	; 3
- 120:	01 c0       	rjmp	.+2      	; 0x124 <Buttons+0x64>
+ 104:	19 82       	std	Y+1, r1	; 0x01
+ 106:	18 82       	st	Y, r1
+ 108:	83 e0       	ldi	r24, 0x03	; 3
+ 10a:	01 c0       	rjmp	.+2      	; 0x10e <Buttons+0x64>
 PT_THREAD(Buttons(struct pt *pt))
 {
 	static uint32_t but_timer=0;
 	static volatile uint8_t delay=0; //200мсек задержка между нажатиями
 	PT_BEGIN(pt);
 	PT_WAIT_UNTIL(pt, (st_millis()-but_timer)>=10);
- 122:	80 e0       	ldi	r24, 0x00	; 0
+ 10c:	80 e0       	ldi	r24, 0x00	; 0
 			OUT_OFF;
 			delay=BUTTON_DELAY_200MSEC;
 		}
 	}*/
 	PT_END(pt);
 }
- 124:	df 91       	pop	r29
- 126:	cf 91       	pop	r28
- 128:	1f 91       	pop	r17
- 12a:	0f 91       	pop	r16
- 12c:	08 95       	ret
+ 10e:	df 91       	pop	r29
+ 110:	cf 91       	pop	r28
+ 112:	1f 91       	pop	r17
+ 114:	0f 91       	pop	r16
+ 116:	08 95       	ret
 
-0000012e <Switch>:
+00000118 <Switch>:
 //Протопоток2 - настрока таймера1 и индикация режима работы генератора
 PT_THREAD(Switch(struct pt *pt))
 {
- 12e:	0f 93       	push	r16
- 130:	1f 93       	push	r17
- 132:	cf 93       	push	r28
- 134:	df 93       	push	r29
- 136:	ec 01       	movw	r28, r24
+ 118:	0f 93       	push	r16
+ 11a:	1f 93       	push	r17
+ 11c:	cf 93       	push	r28
+ 11e:	df 93       	push	r29
+ 120:	ec 01       	movw	r28, r24
 	static volatile uint32_t switch_timer=0;
 	PT_BEGIN(pt);
- 138:	88 81       	ld	r24, Y
- 13a:	99 81       	ldd	r25, Y+1	; 0x01
- 13c:	00 97       	sbiw	r24, 0x00	; 0
- 13e:	21 f0       	breq	.+8      	; 0x148 <Switch+0x1a>
- 140:	83 32       	cpi	r24, 0x23	; 35
- 142:	91 40       	sbci	r25, 0x01	; 1
- 144:	29 f0       	breq	.+10     	; 0x150 <Switch+0x22>
- 146:	20 c0       	rjmp	.+64     	; 0x188 <Switch+0x5a>
+ 122:	88 81       	ld	r24, Y
+ 124:	99 81       	ldd	r25, Y+1	; 0x01
+ 126:	00 97       	sbiw	r24, 0x00	; 0
+ 128:	21 f0       	breq	.+8      	; 0x132 <Switch+0x1a>
+ 12a:	82 32       	cpi	r24, 0x22	; 34
+ 12c:	91 40       	sbci	r25, 0x01	; 1
+ 12e:	29 f0       	breq	.+10     	; 0x13a <Switch+0x22>
+ 130:	20 c0       	rjmp	.+64     	; 0x172 <Switch+0x5a>
 	PT_WAIT_UNTIL(pt,(st_millis()-switch_timer)>=10);//запуск протопотока каждые 10мсек
- 148:	83 e2       	ldi	r24, 0x23	; 35
- 14a:	91 e0       	ldi	r25, 0x01	; 1
- 14c:	99 83       	std	Y+1, r25	; 0x01
- 14e:	88 83       	st	Y, r24
- 150:	86 df       	rcall	.-244    	; 0x5e <st_millis>
- 152:	00 91 6c 00 	lds	r16, 0x006C
- 156:	10 91 6d 00 	lds	r17, 0x006D
- 15a:	20 91 6e 00 	lds	r18, 0x006E
- 15e:	30 91 6f 00 	lds	r19, 0x006F
- 162:	dc 01       	movw	r26, r24
- 164:	cb 01       	movw	r24, r22
- 166:	80 1b       	sub	r24, r16
- 168:	91 0b       	sbc	r25, r17
- 16a:	a2 0b       	sbc	r26, r18
- 16c:	b3 0b       	sbc	r27, r19
- 16e:	0a 97       	sbiw	r24, 0x0a	; 10
- 170:	a1 05       	cpc	r26, r1
- 172:	b1 05       	cpc	r27, r1
- 174:	68 f0       	brcs	.+26     	; 0x190 <Switch+0x62>
+ 132:	82 e2       	ldi	r24, 0x22	; 34
+ 134:	91 e0       	ldi	r25, 0x01	; 1
+ 136:	99 83       	std	Y+1, r25	; 0x01
+ 138:	88 83       	st	Y, r24
+ 13a:	86 df       	rcall	.-244    	; 0x48 <st_millis>
+ 13c:	00 91 64 00 	lds	r16, 0x0064	; 0x800064 <switch_timer.1674>
+ 140:	10 91 65 00 	lds	r17, 0x0065	; 0x800065 <switch_timer.1674+0x1>
+ 144:	20 91 66 00 	lds	r18, 0x0066	; 0x800066 <switch_timer.1674+0x2>
+ 148:	30 91 67 00 	lds	r19, 0x0067	; 0x800067 <switch_timer.1674+0x3>
+ 14c:	dc 01       	movw	r26, r24
+ 14e:	cb 01       	movw	r24, r22
+ 150:	80 1b       	sub	r24, r16
+ 152:	91 0b       	sbc	r25, r17
+ 154:	a2 0b       	sbc	r26, r18
+ 156:	b3 0b       	sbc	r27, r19
+ 158:	0a 97       	sbiw	r24, 0x0a	; 10
+ 15a:	a1 05       	cpc	r26, r1
+ 15c:	b1 05       	cpc	r27, r1
+ 15e:	68 f0       	brcs	.+26     	; 0x17a <Switch+0x62>
 	switch_timer=st_millis();
- 176:	73 df       	rcall	.-282    	; 0x5e <st_millis>
- 178:	60 93 6c 00 	sts	0x006C, r22
- 17c:	70 93 6d 00 	sts	0x006D, r23
- 180:	80 93 6e 00 	sts	0x006E, r24
- 184:	90 93 6f 00 	sts	0x006F, r25
+ 160:	73 df       	rcall	.-282    	; 0x48 <st_millis>
+ 162:	60 93 64 00 	sts	0x0064, r22	; 0x800064 <switch_timer.1674>
+ 166:	70 93 65 00 	sts	0x0065, r23	; 0x800065 <switch_timer.1674+0x1>
+ 16a:	80 93 66 00 	sts	0x0066, r24	; 0x800066 <switch_timer.1674+0x2>
+ 16e:	90 93 67 00 	sts	0x0067, r25	; 0x800067 <switch_timer.1674+0x3>
 		CONNECT_TIMER_TO_PIN;
 		GENERATOR_ON;
 		LED0_ON;
 		LED1_ON;
 	}*/
 	PT_END(pt);
- 188:	19 82       	std	Y+1, r1	; 0x01
- 18a:	18 82       	st	Y, r1
- 18c:	83 e0       	ldi	r24, 0x03	; 3
- 18e:	01 c0       	rjmp	.+2      	; 0x192 <Switch+0x64>
+ 172:	19 82       	std	Y+1, r1	; 0x01
+ 174:	18 82       	st	Y, r1
+ 176:	83 e0       	ldi	r24, 0x03	; 3
+ 178:	01 c0       	rjmp	.+2      	; 0x17c <Switch+0x64>
 //Протопоток2 - настрока таймера1 и индикация режима работы генератора
 PT_THREAD(Switch(struct pt *pt))
 {
 	static volatile uint32_t switch_timer=0;
 	PT_BEGIN(pt);
 	PT_WAIT_UNTIL(pt,(st_millis()-switch_timer)>=10);//запуск протопотока каждые 10мсек
- 190:	80 e0       	ldi	r24, 0x00	; 0
+ 17a:	80 e0       	ldi	r24, 0x00	; 0
 		GENERATOR_ON;
 		LED0_ON;
 		LED1_ON;
 	}*/
 	PT_END(pt);
 }
- 192:	df 91       	pop	r29
- 194:	cf 91       	pop	r28
- 196:	1f 91       	pop	r17
- 198:	0f 91       	pop	r16
- 19a:	08 95       	ret
+ 17c:	df 91       	pop	r29
+ 17e:	cf 91       	pop	r28
+ 180:	1f 91       	pop	r17
+ 182:	0f 91       	pop	r16
+ 184:	08 95       	ret
 
-0000019c <Leds>:
+00000186 <Leds>:
 PT_THREAD(Leds(struct pt *pt))
 {
- 19c:	0f 93       	push	r16
- 19e:	1f 93       	push	r17
- 1a0:	cf 93       	push	r28
- 1a2:	df 93       	push	r29
- 1a4:	ec 01       	movw	r28, r24
+ 186:	0f 93       	push	r16
+ 188:	1f 93       	push	r17
+ 18a:	cf 93       	push	r28
+ 18c:	df 93       	push	r29
+ 18e:	ec 01       	movw	r28, r24
 	static volatile uint32_t leds_timer=0;
 	static volatile uint8_t counter1, counter2=0;
 	PT_BEGIN(pt);
- 1a6:	88 81       	ld	r24, Y
- 1a8:	99 81       	ldd	r25, Y+1	; 0x01
- 1aa:	00 97       	sbiw	r24, 0x00	; 0
- 1ac:	21 f0       	breq	.+8      	; 0x1b6 <Leds+0x1a>
- 1ae:	88 37       	cpi	r24, 0x78	; 120
- 1b0:	91 40       	sbci	r25, 0x01	; 1
- 1b2:	29 f0       	breq	.+10     	; 0x1be <Leds+0x22>
- 1b4:	21 c0       	rjmp	.+66     	; 0x1f8 <Leds+0x5c>
+ 190:	88 81       	ld	r24, Y
+ 192:	99 81       	ldd	r25, Y+1	; 0x01
+ 194:	00 97       	sbiw	r24, 0x00	; 0
+ 196:	21 f0       	breq	.+8      	; 0x1a0 <Leds+0x1a>
+ 198:	87 37       	cpi	r24, 0x77	; 119
+ 19a:	91 40       	sbci	r25, 0x01	; 1
+ 19c:	29 f0       	breq	.+10     	; 0x1a8 <Leds+0x22>
+ 19e:	21 c0       	rjmp	.+66     	; 0x1e2 <Leds+0x5c>
 	PT_WAIT_UNTIL(pt,(st_millis()-leds_timer)>=100);//запуск протопотока каждые 0.1мсек
- 1b6:	88 e7       	ldi	r24, 0x78	; 120
- 1b8:	91 e0       	ldi	r25, 0x01	; 1
- 1ba:	99 83       	std	Y+1, r25	; 0x01
- 1bc:	88 83       	st	Y, r24
- 1be:	4f df       	rcall	.-354    	; 0x5e <st_millis>
- 1c0:	00 91 68 00 	lds	r16, 0x0068
- 1c4:	10 91 69 00 	lds	r17, 0x0069
- 1c8:	20 91 6a 00 	lds	r18, 0x006A
- 1cc:	30 91 6b 00 	lds	r19, 0x006B
- 1d0:	dc 01       	movw	r26, r24
- 1d2:	cb 01       	movw	r24, r22
- 1d4:	80 1b       	sub	r24, r16
- 1d6:	91 0b       	sbc	r25, r17
- 1d8:	a2 0b       	sbc	r26, r18
- 1da:	b3 0b       	sbc	r27, r19
- 1dc:	84 36       	cpi	r24, 0x64	; 100
- 1de:	91 05       	cpc	r25, r1
- 1e0:	a1 05       	cpc	r26, r1
- 1e2:	b1 05       	cpc	r27, r1
- 1e4:	68 f0       	brcs	.+26     	; 0x200 <Leds+0x64>
+ 1a0:	87 e7       	ldi	r24, 0x77	; 119
+ 1a2:	91 e0       	ldi	r25, 0x01	; 1
+ 1a4:	99 83       	std	Y+1, r25	; 0x01
+ 1a6:	88 83       	st	Y, r24
+ 1a8:	4f df       	rcall	.-354    	; 0x48 <st_millis>
+ 1aa:	00 91 60 00 	lds	r16, 0x0060	; 0x800060 <_edata>
+ 1ae:	10 91 61 00 	lds	r17, 0x0061	; 0x800061 <_edata+0x1>
+ 1b2:	20 91 62 00 	lds	r18, 0x0062	; 0x800062 <_edata+0x2>
+ 1b6:	30 91 63 00 	lds	r19, 0x0063	; 0x800063 <_edata+0x3>
+ 1ba:	dc 01       	movw	r26, r24
+ 1bc:	cb 01       	movw	r24, r22
+ 1be:	80 1b       	sub	r24, r16
+ 1c0:	91 0b       	sbc	r25, r17
+ 1c2:	a2 0b       	sbc	r26, r18
+ 1c4:	b3 0b       	sbc	r27, r19
+ 1c6:	84 36       	cpi	r24, 0x64	; 100
+ 1c8:	91 05       	cpc	r25, r1
+ 1ca:	a1 05       	cpc	r26, r1
+ 1cc:	b1 05       	cpc	r27, r1
+ 1ce:	68 f0       	brcs	.+26     	; 0x1ea <Leds+0x64>
 	leds_timer=st_millis();
- 1e6:	3b df       	rcall	.-394    	; 0x5e <st_millis>
- 1e8:	60 93 68 00 	sts	0x0068, r22
- 1ec:	70 93 69 00 	sts	0x0069, r23
- 1f0:	80 93 6a 00 	sts	0x006A, r24
- 1f4:	90 93 6b 00 	sts	0x006B, r25
+ 1d0:	3b df       	rcall	.-394    	; 0x48 <st_millis>
+ 1d2:	60 93 60 00 	sts	0x0060, r22	; 0x800060 <_edata>
+ 1d6:	70 93 61 00 	sts	0x0061, r23	; 0x800061 <_edata+0x1>
+ 1da:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <_edata+0x2>
+ 1de:	90 93 63 00 	sts	0x0063, r25	; 0x800063 <_edata+0x3>
 	else
 	{
 		LED0_OFF;
 		LED1_OFF;	
 	}*/
 	PT_END(pt);
- 1f8:	19 82       	std	Y+1, r1	; 0x01
- 1fa:	18 82       	st	Y, r1
- 1fc:	83 e0       	ldi	r24, 0x03	; 3
- 1fe:	01 c0       	rjmp	.+2      	; 0x202 <Leds+0x66>
+ 1e2:	19 82       	std	Y+1, r1	; 0x01
+ 1e4:	18 82       	st	Y, r1
+ 1e6:	83 e0       	ldi	r24, 0x03	; 3
+ 1e8:	01 c0       	rjmp	.+2      	; 0x1ec <Leds+0x66>
 PT_THREAD(Leds(struct pt *pt))
 {
 	static volatile uint32_t leds_timer=0;
 	static volatile uint8_t counter1, counter2=0;
 	PT_BEGIN(pt);
 	PT_WAIT_UNTIL(pt,(st_millis()-leds_timer)>=100);//запуск протопотока каждые 0.1мсек
- 200:	80 e0       	ldi	r24, 0x00	; 0
+ 1ea:	80 e0       	ldi	r24, 0x00	; 0
 	{
 		LED0_OFF;
 		LED1_OFF;	
 	}*/
 	PT_END(pt);
 }
- 202:	df 91       	pop	r29
- 204:	cf 91       	pop	r28
- 206:	1f 91       	pop	r17
- 208:	0f 91       	pop	r16
- 20a:	08 95       	ret
+ 1ec:	df 91       	pop	r29
+ 1ee:	cf 91       	pop	r28
+ 1f0:	1f 91       	pop	r17
+ 1f2:	0f 91       	pop	r16
+ 1f4:	08 95       	ret
 
-0000020c <main>:
+000001f6 <main>:
 /*?Протопотоки*/
 
 int main(void)
 {
-	//Инициализация струтуры генератора
-	p_signalka->current_state=ALARM_OFF;
- 20c:	10 92 60 00 	sts	0x0060, r1
-	p_signalka->previous_state=ALARM_OFF;
- 210:	10 92 61 00 	sts	0x0061, r1
 	//Настройка входов-выходов
 	DDRD=0b11111011; //PD2- input, other - outputs for noise reduction
- 214:	8b ef       	ldi	r24, 0xFB	; 251
- 216:	81 bb       	out	0x11, r24	; 17
+ 1f6:	8b ef       	ldi	r24, 0xFB	; 251
+ 1f8:	81 bb       	out	0x11, r24	; 17
 	DDRB=0b11111111; //Все пины PORTB - выходы
- 218:	8f ef       	ldi	r24, 0xFF	; 255
- 21a:	87 bb       	out	0x17, r24	; 23
+ 1fa:	8f ef       	ldi	r24, 0xFF	; 255
+ 1fc:	87 bb       	out	0x17, r24	; 23
 	DDRC=0b11111100;//PC0 - вход геркона, PC1 - вход PIR, other - outputs for noise reduction
- 21c:	8c ef       	ldi	r24, 0xFC	; 252
- 21e:	84 bb       	out	0x14, r24	; 20
+ 1fe:	8c ef       	ldi	r24, 0xFC	; 252
+ 200:	84 bb       	out	0x14, r24	; 20
 	PORTD=0b0000100;//100k pull-up PD2, на остальных выходах - земля
- 220:	84 e0       	ldi	r24, 0x04	; 4
- 222:	82 bb       	out	0x12, r24	; 18
+ 202:	84 e0       	ldi	r24, 0x04	; 4
+ 204:	82 bb       	out	0x12, r24	; 18
 	PORTB=0;//Все выходы PORTB на земле.
- 224:	18 ba       	out	0x18, r1	; 24
+ 206:	18 ba       	out	0x18, r1	; 24
 	PORTC=0b0000011;//100k pull-up PC0, PC1, на остальных выходах - земля
- 226:	83 e0       	ldi	r24, 0x03	; 3
- 228:	85 bb       	out	0x15, r24	; 21
+ 208:	83 e0       	ldi	r24, 0x03	; 3
+ 20a:	85 bb       	out	0x15, r24	; 21
 	
 	
 	// Настройка системного таймера
 	TCCR0 |= (_BV(CS01) | _BV(CS00));
- 22a:	83 b7       	in	r24, 0x33	; 51
- 22c:	83 60       	ori	r24, 0x03	; 3
- 22e:	83 bf       	out	0x33, r24	; 51
+ 20c:	83 b7       	in	r24, 0x33	; 51
+ 20e:	83 60       	ori	r24, 0x03	; 3
+ 210:	83 bf       	out	0x33, r24	; 51
 	// Enable interrupt
 	//TIMSK |= _BV(TOIE0) | _BV(OCIE1A);
 	// Set default value
 	TCNT0 = ST_CTC_HANDMADE; //1ms tiks on 8mhz CPU clock
- 230:	82 e8       	ldi	r24, 0x82	; 130
- 232:	82 bf       	out	0x32, r24	; 50
+ 212:	82 e8       	ldi	r24, 0x82	; 130
+ 214:	82 bf       	out	0x32, r24	; 50
 	
 	//Инициализация протопотоков
 	PT_INIT(&Buttons_pt);
- 234:	10 92 7d 00 	sts	0x007D, r1
- 238:	10 92 7c 00 	sts	0x007C, r1
+ 216:	10 92 75 00 	sts	0x0075, r1	; 0x800075 <Buttons_pt+0x1>
+ 21a:	10 92 74 00 	sts	0x0074, r1	; 0x800074 <Buttons_pt>
 	PT_INIT(&Switch_pt);
- 23c:	10 92 7b 00 	sts	0x007B, r1
- 240:	10 92 7a 00 	sts	0x007A, r1
+ 21e:	10 92 73 00 	sts	0x0073, r1	; 0x800073 <Switch_pt+0x1>
+ 222:	10 92 72 00 	sts	0x0072, r1	; 0x800072 <Switch_pt>
 	PT_INIT(&Leds_pt);
- 244:	10 92 79 00 	sts	0x0079, r1
- 248:	10 92 78 00 	sts	0x0078, r1
+ 226:	10 92 71 00 	sts	0x0071, r1	; 0x800071 <Leds_pt+0x1>
+ 22a:	10 92 70 00 	sts	0x0070, r1	; 0x800070 <Leds_pt>
 	
 	//Настройка собаки
 	wdt_reset(); //сбрасываем собаку на всякий пожарный
- 24c:	a8 95       	wdr
+ 22e:	a8 95       	wdr
 __attribute__ ((__always_inline__))
 void wdt_enable (const uint8_t value)
 {
 	if (_SFR_IO_REG_P (_WD_CONTROL_REG))
 	{
 		__asm__ __volatile__ (
- 24e:	9f e0       	ldi	r25, 0x0F	; 15
- 250:	88 e1       	ldi	r24, 0x18	; 24
- 252:	0f b6       	in	r0, 0x3f	; 63
- 254:	f8 94       	cli
- 256:	a8 95       	wdr
- 258:	81 bd       	out	0x21, r24	; 33
- 25a:	0f be       	out	0x3f, r0	; 63
- 25c:	91 bd       	out	0x21, r25	; 33
+ 230:	9f e0       	ldi	r25, 0x0F	; 15
+ 232:	88 e1       	ldi	r24, 0x18	; 24
+ 234:	0f b6       	in	r0, 0x3f	; 63
+ 236:	f8 94       	cli
+ 238:	a8 95       	wdr
+ 23a:	81 bd       	out	0x21, r24	; 33
+ 23c:	0f be       	out	0x3f, r0	; 63
+ 23e:	91 bd       	out	0x21, r25	; 33
 	wdt_enable(WDTO_2S); //запускаем собаку с перидом 2с
 	//Запускаем прерывани
 	sei();
- 25e:	78 94       	sei
+ 240:	78 94       	sei
 
     while(1)
     {
 		//Крутим протопотоки
 		PT_SCHEDULE(Buttons(&Buttons_pt));
- 260:	8c e7       	ldi	r24, 0x7C	; 124
- 262:	90 e0       	ldi	r25, 0x00	; 0
- 264:	2d df       	rcall	.-422    	; 0xc0 <Buttons>
+ 242:	84 e7       	ldi	r24, 0x74	; 116
+ 244:	90 e0       	ldi	r25, 0x00	; 0
+ 246:	31 df       	rcall	.-414    	; 0xaa <Buttons>
 		PT_SCHEDULE(Switch(&Switch_pt));
- 266:	8a e7       	ldi	r24, 0x7A	; 122
- 268:	90 e0       	ldi	r25, 0x00	; 0
- 26a:	61 df       	rcall	.-318    	; 0x12e <Switch>
+ 248:	82 e7       	ldi	r24, 0x72	; 114
+ 24a:	90 e0       	ldi	r25, 0x00	; 0
+ 24c:	65 df       	rcall	.-310    	; 0x118 <Switch>
 		PT_SCHEDULE(Leds(&Leds_pt));
- 26c:	88 e7       	ldi	r24, 0x78	; 120
- 26e:	90 e0       	ldi	r25, 0x00	; 0
- 270:	95 df       	rcall	.-214    	; 0x19c <Leds>
+ 24e:	80 e7       	ldi	r24, 0x70	; 112
+ 250:	90 e0       	ldi	r25, 0x00	; 0
+ 252:	99 df       	rcall	.-206    	; 0x186 <Leds>
 		wdt_reset(); //переодически сбрасываем собаку чтобы не улетететь в ресет
- 272:	a8 95       	wdr
+ 254:	a8 95       	wdr
 	 }
- 274:	f5 cf       	rjmp	.-22     	; 0x260 <main+0x54>
+ 256:	f5 cf       	rjmp	.-22     	; 0x242 <main+0x4c>
 
-00000276 <_exit>:
- 276:	f8 94       	cli
+00000258 <_exit>:
+ 258:	f8 94       	cli
 
-00000278 <__stop_program>:
- 278:	ff cf       	rjmp	.-2      	; 0x278 <__stop_program>
+0000025a <__stop_program>:
+ 25a:	ff cf       	rjmp	.-2      	; 0x25a <__stop_program>

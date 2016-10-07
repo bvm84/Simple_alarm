@@ -8,10 +8,14 @@
   Суть устройства:
   
   Устройство представляет собой простую сигнализацию. Область применения - гараж, кладовка и т.п.
-  Отличительная особенность постановка и снятие с лхраны одной кнопкой с помошью серии долгих и
-  коротких нажатий (по аналогии с азбукой морзе, тире-точка). В прошивке задается последовательность максимум
-  из 8 нажатий (256 вариантов). Задается дительность длинного нажатия, короткого, 
-  паузы между нажатиями, время сброса ввода пароля (в миллисекндах). 
+  Реализовано 2 режима (переключение режимов - джампером):
+  1. постановка и снятие с охраны одной кнопкой с помошью серии долгих и
+  коротких нажатий (по аналогии с азбукой морзе, тире-точка). Код задается с помошью джамперов (туда же 
+  может быть подключена клавиатура для второго режима), длительность кода задается в прошивке.
+  Задается дительность длинного нажатия, короткого, паузы между нажатиями, время сброса ввода пароля (в миллисекундах). 
+  2. постановка и снятие с охраны одной кнопкой с помошью набора кода с клавиатуры. Код задается пользователем,
+  при нажатой клавище * во время ребута системы. Признак окончания ввода кода - клавиша #.
+  Также задаются:
   Длительность задержки срабатывания сигналки при срабатывании датчиков (для ввода пароля снятия с сигнализации)
   Длительность задержки срабатывания при постановке на сигнализацию (ввели пароль, закрываем гараж).
   Длительность звукового импульса, длительность паузы при срабатывания сигналки.
@@ -39,16 +43,17 @@
    
    Распиновка контроллера:
    Входы:
-   PD0-PD7 - клавиатура. Входы с подтяжкой к питанию.
-   PD2 - кнопка ввода пароля. Входы с подтяжкой к питанию.
-   PC0 - геркон, вход с подтяжкой к питанию
-   PC1 - PIR датчик
-   Остальные PC зарезервированы под входы под прочи едатчики
+   PD0-PD7 - клавиатура. Входы с подтяжкой к питанию. сюда же подключена колодка, для пароля кнопки
+   PC0 - ввод выбора режима кнопка/клава
+   PС1 - кнопка ввода пароля. Входы с подтяжкой к питанию.
+   PC2 - геркон, вход с подтяжкой к питанию
+   PC3 - PIR датчик
+   Остальные PC зарезервированы под входы под прочие датчики
    
    Выходы
    PB0 - выход на ревун (танзистор + реле+выбор напряжения)
    PB1 - выход на лампу (транзистор+ реле+выбор напряжения)
-   PB2 - выходна кнопку вызова на мобильном телефоне.
+   PB2 - выход на кнопку вызова на мобильном телефоне.
    PB3 - Светодиод "Поставлено на охрану" - зеленый.
    PB4 - Светодиод "Снято с охраны" - красный.
    Остальные PB зарезервированы под прочие выходы.
@@ -73,19 +78,28 @@
 
 
 /*Макрооредения*/
-//Пароль!
-#define PASSWORD {LONG_P, SHORT_P, SHORT_P, LONG_P, LONG_P, END_P}
+//Пароль по умолчанию для режима с клавиатурой
+#define KBD_PASS {1, 2, 3, 4, #}
+#define BUT_PASS 0b00000000
+#define BUT_PASS_LEN 4
 //Макроопределения входов-выходов
 //Входы
-#define PASS_BUT PD2 //вход на кнопку ввода пароля
-#define PASS_BUT_PORT PORTD
-#define PASS_BUT_DDR DDRD
-#define PASS_BUT_PIN PIND
-#define GERKON PC0 //вход на герконовый датчик
+#define REGIME_SEL PC0
+#define REGIME_SEL_PORT PORTC
+#define REGIME_SEL_DDR DDRC
+#define REGIME_SEL_PIN PINC
+#define PASS_BUT PC1 //вход на кнопку ввода пароля
+#define PASS_BUT_PORT PORTC
+#define PASS_BUT_DDR DDRC
+#define PASS_BUT_PIN PINC
+#define KBD_PORT PORTD
+#define KBD_DDR DDRD
+#define KBD_PIN PIBD
+#define GERKON PC2 //вход на герконовый датчик
 #define GERKON_PORT PORTC
 #define GERKON_DDR DDRC
 #define GERKON_BUT_PIN PINC
-#define PIR PC1 //вход на PIR датчик
+#define PIR PC3 //вход на PIR датчик
 #define PIR_PORT PORTC
 #define PIR_DDR DDRC
 #define PIR_BUT_PIN PINC
@@ -113,6 +127,8 @@
 #define RED_LED_PORT_PIN PINB
 
 //Макроопредения режимов
+#define ALARM_TYPE_BUTTON 0
+#define ALARM_TYPE_KBD 1
 #define LONG_P 2
 #define SHORT_P 1
 #define END_P 0
@@ -155,7 +171,7 @@
 #define LAMP_OFF LAMP_PORT&=~_BV(LAMP)
 #define MOBILE_ON MOBILE_PORT|=_BV(MOBILE)
 #define MOBILE_OFF MOBILE_PORT&=~_BV(MOBILE)
-//Бит за номером, очистка, установка, проверка, переключение
+//Работа с числами
 #define HI(x) ((x)>>8)
 #define LO(x) ((x)& 0xFF)
 #define ABS(x) ((x) < 0 ? -(x) : (x))
@@ -165,11 +181,13 @@
 /*Объявление глобальных переменных*/
 //Структура режима сигналки и начальные условия
 typedef struct {
+	uint8_t alarm_type;
 	uint8_t current_state;
 	uint8_t previous_state;
-	const uint8_t pass[];
+	uint8_t KBD_pass[];
+	uint8_t BUT_pass;
 } alarm_struct;
-static alarm_struct signalka={ALARM_OFF, ALARM_OFF, PASSWORD}, *p_signalka=&signalka;
+static alarm_struct signalka={ALARM_TYPE_KBD, ALARM_OFF, ALARM_OFF, KBD_PASS, BUT_PASS}, *p_signalka=&signalka;
 
 //Указатели на структуры протопотоков
 static struct pt Buttons_pt;
@@ -200,6 +218,14 @@ uint32_t st_millis(void)
 	return m;
 }
 /*?Функции*/
+void check_button()
+{
+
+}
+uint8_t * get_password()
+{
+
+}
 
 
 /*Обработчики прерываний*/
@@ -444,13 +470,25 @@ PT_THREAD(Leds(struct pt *pt))
 int main(void)
 {
 	//Настройка входов-выходов
-	DDRD=0b11111011; //PD2- input, other - outputs for noise reduction
+	DDRD=0b00000000; //All inputs (либо пароль кнопки либо клава)
 	DDRB=0b11111111; //Все пины PORTB - выходы
-	DDRC=0b11111100;//PC0 - вход геркона, PC1 - вход PIR, other - outputs for noise reduction
-	PORTD=0b0000100;//100k pull-up PD2, на остальных выходах - земля
+	DDRC=0b11110000;//PC0 - выбор типа сигналки (кнопка/клава), PC1 - кнопка, PC2- геркон, PC3 - PIR
+	PORTD=0b0000100;//Подтяжка к питанию через 100k для всех ножек ->кнопки замыкают на землю 
 	PORTB=0;//Все выходы PORTB на земле.
-	PORTC=0b0000011;//100k pull-up PC0, PC1, на остальных выходах - земля
+	PORTC=0b0001111;//100k pull-up PC0-PC3
 	
+	//Определяем тип таймера
+	if (!(REGIME_SEL_PIN&(_BV(REGIME_SEL))))//((BUT1_PORT_PIN&(_BV(BUT1)))==0)
+	{
+		p_signalka->alarm_type=ALARM_TYPE_BUTTON;
+	}
+	else p_signalka->alarm_type=ALARM_TYPE_KBD;
+	if ((p_signalka->alarm_type==ALARM_TYPE_KBD)&&(check_button()=='*'))
+	{
+		p_signalka->pass=get_password();
+	}
+	else 
+
 	
 	// Настройка системного таймера
 	TCCR0 |= (_BV(CS01) | _BV(CS00));
