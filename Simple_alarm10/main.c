@@ -75,11 +75,11 @@
 #include <avr/interrupt.h>
 #include <util/delay.h>
 #include <pt-sem.h>
+#include <eeprom_pass.h>
 
 
 /*Макрооредения*/
 //Пароль по умолчанию для режима с клавиатурой
-#define KBD_PASS {1, 2, 3, 4, #}
 #define BUT_PASS 0b00000000
 #define BUT_PASS_LEN 4
 //Макроопределения входов-выходов
@@ -184,10 +184,10 @@ typedef struct {
 	uint8_t alarm_type;
 	uint8_t current_state;
 	uint8_t previous_state;
-	uint8_t KBD_pass[];
 	uint8_t BUT_pass;
+	uint8_t KBD_pass_current[8];
 } alarm_struct;
-static alarm_struct signalka={ALARM_TYPE_KBD, ALARM_OFF, ALARM_OFF, KBD_PASS, BUT_PASS}, *p_signalka=&signalka;
+static alarm_struct signalka={ALARM_TYPE_KBD, ALARM_OFF, ALARM_OFF, BUT_PASS, {0,0}}, *p_signalka=&signalka;
 
 //Указатели на структуры протопотоков
 static struct pt Buttons_pt;
@@ -218,11 +218,7 @@ uint32_t st_millis(void)
 	return m;
 }
 /*?Функции*/
-void check_button()
-{
-
-}
-uint8_t * get_password()
+uint8_t check_button()
 {
 
 }
@@ -400,69 +396,22 @@ PT_THREAD(Leds(struct pt *pt))
 	PT_BEGIN(pt);
 	PT_WAIT_UNTIL(pt,(st_millis()-leds_timer)>=100);//запуск протопотока каждые 0.1мсек
 	leds_timer=st_millis();
-	/*if (p_generator->regime==GEN_PERIODIC)
+	if (p_signalka->current_state==ALARM_OFF)
 	{
-		switch(p_generator->period)
-		{
-			case PERIOD_HZ1:
-			{
-				if (counter1<10) //моргает LED0 раз в секунду
-				{
-					LED0_ON;
-					counter1++;
-					counter2=0;
-				}
-				else if (counter2<10)
-				{
-					LED0_OFF;
-					counter2++;
-					if (counter2>=9)
-					{
-						counter1=0;
-					}
-				}
-				LED1_OFF;
-				break;
-			}
-			case PERIOD_HZ100: //моргает LED0 - 10 ращ в секунду
-			{
-				if (((LED0_PORT_PIN&(_BV(LED0)))==0))
-				{
-					LED0_ON;
-				}
-				else
-				{
-					LED0_OFF;
-				}
-				LED1_OFF;
-				break;
-			}
-			case PERIOD_HZ1000: //LED0 горит непрерывно
-			{
-				LED0_ON;
-				LED1_OFF;
-				break;
-			}
-		}
+		
 	}
-	else if (p_generator->regime==GEN_UART) //моргаем обоими светодиодами
+	else if (p_signalka->current_state==ALARM_ON)
 	{
-		if ((LED0_PORT_PIN&(_BV(LED0)))==0)
-		{
-			LED0_OFF;
-			LED1_OFF;
-		}
-		else 
-		{
-			LED0_ON;
-			LED1_ON;
-		}
 	}
-	else
+	else if (p_signalka->current_state==ALARM_UP)
 	{
-		LED0_OFF;
-		LED1_OFF;	
-	}*/
+	}
+	else if (p_signalka->current_state==ALARM_DOWN)	 
+	{
+	}    		   
+	else if (p_signalka->current_state==ALARM_BREAK)
+	{
+	}      			
 	PT_END(pt);
 }
 /*?Протопотоки*/
@@ -473,22 +422,30 @@ int main(void)
 	DDRD=0b00000000; //All inputs (либо пароль кнопки либо клава)
 	DDRB=0b11111111; //Все пины PORTB - выходы
 	DDRC=0b11110000;//PC0 - выбор типа сигналки (кнопка/клава), PC1 - кнопка, PC2- геркон, PC3 - PIR
-	PORTD=0b0000100;//Подтяжка к питанию через 100k для всех ножек ->кнопки замыкают на землю 
+	PORTD=0b1111111;//Подтяжка к питанию через 100k для всех ножек ->кнопки замыкают на землю 
 	PORTB=0;//Все выходы PORTB на земле.
 	PORTC=0b0001111;//100k pull-up PC0-PC3
 	
-	//Определяем тип таймера
+	//Определяем тип сигналки (клава/кнопка, вводим пароль с клавы если нажата *)
 	if (!(REGIME_SEL_PIN&(_BV(REGIME_SEL))))//((BUT1_PORT_PIN&(_BV(BUT1)))==0)
 	{
 		p_signalka->alarm_type=ALARM_TYPE_BUTTON;
 	}
 	else p_signalka->alarm_type=ALARM_TYPE_KBD;
-	if ((p_signalka->alarm_type==ALARM_TYPE_KBD)&&(check_button()=='*'))
+	if (p_signalka->alarm_type==ALARM_TYPE_KBD)
 	{
-		p_signalka->pass=get_password();
+		if (check_button()=='*')
+		{
+    		//p_signalka->KBD_pass_current[0]=get_password(); //установка пароля
+			//eeprom_save_pass(&p_signalka->KBD_pass_current); //сохраняем пароль
+		 } 
+		else 
+		{
+			p_signalka->KBD_pass_current[0]=eeprom_get_pass(&p_signalka->KBD_pass_current);
+		}      				 		    
 	}
-	else 
-
+	else p_signalka->BUT_pass=PIND;
+  
 	
 	// Настройка системного таймера
 	TCCR0 |= (_BV(CS01) | _BV(CS00));
@@ -505,7 +462,7 @@ int main(void)
 	//Настройка собаки
 	wdt_reset(); //сбрасываем собаку на всякий пожарный
 	wdt_enable(WDTO_2S); //запускаем собаку с перидом 2с
-	//Запускаем прерывани
+	//Запускаем прерывания
 	sei();
 
     while(1)
